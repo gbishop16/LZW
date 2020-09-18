@@ -192,7 +192,7 @@ public class Decode extends LZWHelper{
 	 */
 	public void initializeDictionaries (HashMap<String, Integer> encodingDictionary, HashMap<Integer, String> decodingDictionary, int CHARSET_SIZE){
 		for(int i = 0; i < CHARSET_SIZE ; i++){
-			addNewSymbolToDictionary(""+(char)i,encodingDictionary,decodingDictionary);
+			addNewSymbolToDictionary(new StringBuilder(""+(char)i),encodingDictionary,decodingDictionary);
 		}
 	}
 	/**
