@@ -185,6 +185,17 @@ public class Decode extends LZWHelper{
 		}
 	}
 	/**
+	 * 
+	 * @param encodingDictionary the encoding dictionary to be initialized
+	 * @param decodingDictionary the decoding dictionary to be initialized
+	 * @param CHARSET_SIZE the size of the charset
+	 */
+	public void initializeDictionaries (HashMap<String, Integer> encodingDictionary, HashMap<Integer, String> decodingDictionary, int CHARSET_SIZE){
+		for(int i = 0; i < CHARSET_SIZE ; i++){
+			addNewSymbolToDictionary(""+(char)i,encodingDictionary,decodingDictionary);
+		}
+	}
+	/**
 	 * We will have to handle a strange edge case in which, during LZW encoding, the information required to add a symbol into the dictionary is contained within the first encoded instance of that symbol.
 	 * In other words, the information required to add, say, "bb=256" cannot be accessed, because to add "bb" you need to first decode "256", but to decode "256" you must first add "bb."
 	 * By way of example, consider encoding the string "bbbb". Each of the steps are enumerated below:
