@@ -160,6 +160,9 @@ public class Decode extends LZWHelper{
 		
 	}
 	/**
+	 * This method initializes the encoding and decoding dictionaries with ascii characters
+	 */
+	/**
 	 * This function will run through a loop CHARSET_SIZE times in which it adds the key value pair (c, i) where i is the index of the loop and c is the character corresponding to that index, as a string.
 	 * @param encodingDictionary the dictionary to be initialized
 	 * @param CHARSET_SIZE the size of the charset
