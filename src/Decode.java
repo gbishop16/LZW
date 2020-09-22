@@ -104,8 +104,7 @@ public class Decode extends LZWHelper{
 	{
 
 		//The following two methods will initialize our encoding and decoding dictionaries, respectively.
-		initializeEncodingDictionary(encodingDictionary, CHARSET_SIZE);
-		initializeDecodingDictionary(decodingDictionary, CHARSET_SIZE);
+		initializeDictionaries(encodingDictionary,decodingDictionary,CHARSET_SIZE);
 		//We will decode all of the ciphertext that we can, perform LZW encoding on it to get a portion of the decoding dictionary, use that portion of the decoding dictionary to decode more of the ciphertext, and iterate this until the ciphertext is completely decoded.
 		for(int i = 0; i < ciphertextAsArray.length; i++)
 		{
