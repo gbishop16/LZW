@@ -164,25 +164,12 @@ public class Decode extends LZWHelper{
 	 * @param encodingDictionary the dictionary to be initialized
 	 * @param CHARSET_SIZE the size of the charset
 	 */
-	private void initializeEncodingDictionary(HashMap<String, Integer> encodingDictionary, int CHARSET_SIZE)
-	{
-		for(int i = 0; i < CHARSET_SIZE; i++)
-		{
-			encodingDictionary.put((char)(i) + "", i);
-		}
-	}
+	
 	/**
 	 * This function will run through a loop CHARSET_SIZE times in which it adds the key value pair (i, c) where i is the index of the loop and c is the character corresponding to that index, as a string.
 	 * @param decodingDictionary the dictionary to be initialized
 	 * @param CHARSET_SIZE the size of the charset
 	 */
-	private void initializeDecodingDictionary(HashMap<Integer, String> decodingDictionary, int CHARSET_SIZE)
-	{
-		for(int i = 0; i < CHARSET_SIZE; i++)
-		{
-			decodingDictionary.put(i, (char)(i) + "");
-		}
-	}
 	/**
 	 * 
 	 * @param encodingDictionary the encoding dictionary to be initialized
@@ -192,7 +179,7 @@ public class Decode extends LZWHelper{
 	public void initializeDictionaries (HashMap<String, Integer> encodingDictionary, HashMap<Integer, String> decodingDictionary, int CHARSET_SIZE){
 		for(int i = 0; i < CHARSET_SIZE ; i++){
 			String asciiChar=(char)(i)+"";
-			addNewSymbolToDictionary(new StringBuilder asciiChar,encodingDictionary,decodingDictionary);
+			addNewSymbolToDictionary(new StringBuilder (asciiChar),encodingDictionary,decodingDictionary);
 		}
 	}
 	/**
