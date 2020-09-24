@@ -157,7 +157,7 @@ public class Decode extends LZWHelper{
 			encodingDictionary.put(symbol, encodingDictionary.size());
 			decodingDictionary.put(decodingDictionary.size(), symbol);
 		}else{
-			System.out.println ("ERROR: Max Table Size Reached");
+			System.out.println ("ERROR: Max Dictionary Size Reached");
 		}
 		
 	}
