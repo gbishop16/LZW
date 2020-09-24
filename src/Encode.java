@@ -98,6 +98,8 @@ public class Encode extends LZWHelper{
 		{
 			String symbol = currentLongestSubstringInDictionary.toString();
 			encodingDictionary.put(symbol, encodingDictionary.size());
+		}else{
+			System.out.println ("ERROR: Max Table Size Reached");
 		}
 		
 	}
