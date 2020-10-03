@@ -149,7 +149,7 @@ public class Decode extends LZWHelper {
 		String plaintextChunk = new String();
 		plaintextChunk = decodingDictionary.get(ciphertext);
 		if (plaintextChunk == null) {
-			handleCiphertextNotInDictionaryError(currentLongestSubstringInDictionary, encodingDictionary,
+			HandleCiphertextNotInDictionaryError(currentLongestSubstringInDictionary, encodingDictionary,
 					decodingDictionary);
 			plaintextChunk = decodingDictionary.get(ciphertext);
 		}
@@ -158,7 +158,7 @@ public class Decode extends LZWHelper {
 		for (int i = 0; i < plaintextChunk.length(); i++) {
 			currentLongestSubstringInDictionary.append(plaintextChunk.charAt(i) + "");
 			if (encodingDictionary.get(currentLongestSubstringInDictionary.toString()) == null) {
-				handleSubstringNotInDictionary(plaintextChunk.charAt(i), currentLongestSubstringInDictionary,
+				HandleSubstringNotInDictionary(plaintextChunk.charAt(i), currentLongestSubstringInDictionary,
 						encodingDictionary, decodingDictionary);
 			}
 		}
@@ -225,7 +225,7 @@ public class Decode extends LZWHelper {
 	 * @param encodingDictionary                  the encoding dictionary
 	 * @param decodingDictionary                  the decoding dictionary
 	 */
-	private void handleCiphertextNotInDictionaryError(StringBuilder currentLongestSubstringInDictionary,
+	private void HandleCiphertextNotInDictionaryError(StringBuilder currentLongestSubstringInDictionary,
 			HashMap<String, Integer> encodingDictionary, HashMap<Integer, String> decodingDictionary) {
 		addNewSymbolToDictionary(
 				new StringBuilder(currentLongestSubstringInDictionary.toString()
