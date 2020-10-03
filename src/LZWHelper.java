@@ -50,21 +50,25 @@ public class LZWHelper {
 	 * @param decodingDictionary                  the dictionary we will use to keep track of the
 	 *                                            decoding key-value pairs
 	 */
-	protected void HandleSubstringNotInDictionary(char plaintextChar, StringBuilder currentLongestSubstringInDictionary,
-			HashMap<String, Integer> encodingDictionary, HashMap<Integer, String> decodingDictionary) {
-		AddNewSymbolToDictionary(currentLongestSubstringInDictionary, encodingDictionary, decodingDictionary);
+	protected void HandleSubstringNotInDictionary(char plaintextChar,
+			StringBuilder currentLongestSubstringInDictionary,
+			HashMap<String, Integer> encodingDictionary,
+			HashMap<Integer, String> decodingDictionary) {
+		AddNewSymbolToDictionary(currentLongestSubstringInDictionary, encodingDictionary,
+				decodingDictionary);
 		// resetting currentLongestSubstringInDictionary
 		currentLongestSubstringInDictionary.setLength(0);
 		currentLongestSubstringInDictionary.append(plaintextChar + "");
 	}
 
-	protected void HandleSubstringNotInDictionary(char plaintextChar, StringBuilder currentLongestSubstringInDictionary,
-			HashMap<String, Integer> encodingDictionary, HashMap<Integer, String> decodingDictionary,
-			BufferedWriter encodeWriter) {
+	protected void HandleSubstringNotInDictionary(char plaintextChar,
+			StringBuilder currentLongestSubstringInDictionary,
+			HashMap<String, Integer> encodingDictionary,
+			HashMap<Integer, String> decodingDictionary, BufferedWriter encodeWriter) {
 		OutputToCodestream(currentLongestSubstringInDictionary.toString().substring(0,
 				currentLongestSubstringInDictionary.length() - 1), encodeWriter);
-		HandleSubstringNotInDictionary(plaintextChar, currentLongestSubstringInDictionary, encodingDictionary,
-				decodingDictionary);
+		HandleSubstringNotInDictionary(plaintextChar, currentLongestSubstringInDictionary,
+				encodingDictionary, decodingDictionary);
 	}
 
 	/**
@@ -75,7 +79,8 @@ public class LZWHelper {
 	 * @param decodingDictionary                  the decoding dictionary
 	 */
 	public void AddNewSymbolToDictionary(StringBuilder currentLongestSubstringInDictionary,
-			HashMap<String, Integer> encodingDictionary, HashMap<Integer, String> decodingDictionary) {
+			HashMap<String, Integer> encodingDictionary,
+			HashMap<Integer, String> decodingDictionary) {
 		System.out.println(
 				"If you're seeing this, there has been an issue with how a class inherits from LZWHelper. Check to make sure that you have not changed any names or protections of functions which appear in LZWHelper.");
 	}
@@ -89,11 +94,15 @@ public class LZWHelper {
 		System.out.println(
 				"If you're seeing this, there has been an issue with how a class inherits from LZWHelper. Check to make sure that you have not changed any names or protections of functions which appear in LZWHelper.");
 	}
-	/*  
-  __        ___
- / o\      /o o\
-|   <      |   |
- \__/      |,,,|
+	/*
+	 *  _..._
+      .'     '.
+     / \     / \
+    (  |     |  )
+    (`"`  "  `"`)
+     \         /
+      \  ___  /
+       '.___.'
 	 */
 
 }

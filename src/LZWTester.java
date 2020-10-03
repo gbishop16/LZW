@@ -7,20 +7,23 @@ import java.io.*;
 import java.util.*;
 
 public class LZWTester {
-	public static void main(String[] args) throws IOException {
+	public static void Main(String[] args) throws IOException {
 //		Encode testEncoder = new Encode();
 //		testEncoder.encoding("file1.txt");
 		Decode testDecoder = new Decode();
 		testDecoder.decode("file1.txt.lzw");
 	}
 	/*
-	 *  _..._
-      .'     '.
-     / \     / \
-    (  |     |  )
-    (`"`  "  `"`)
-     \         /
-      \  ___  /
-       '.___.'
+	 * _..----.._
+    _-'_..----.._'-_
+  .'.  \       ( `'.'.
+ / / `\ `\       )  \ \
+| |   _`\ `\____(    | |
+| |  [__]_\ `\__()   | |
+| |        `\ `\     | |
+ \ \         `\ `\  / /
+  '.'-._       `\ `'.'
+    `-._`'----'`_.-'
+        `"----"`
 	 */
 }

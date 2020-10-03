@@ -116,8 +116,8 @@ public class Decode extends LZWHelper {
 		// dictionary to decode more of the ciphertext, and iterate this until the
 		// ciphertext is completely decoded.
 		for (int i = 0; i < ciphertextAsArray.length; i++) {
-			decodeSection(ciphertextAsArray[i], currentLongestSubstringInDictionary, encodingDictionary,
-					decodingDictionary);
+			decodeSection(ciphertextAsArray[i], currentLongestSubstringInDictionary,
+					encodingDictionary, decodingDictionary);
 		}
 		return decodingDictionary;
 	}
@@ -144,13 +144,14 @@ public class Decode extends LZWHelper {
 	 *                                            decoding key-value pairs
 	 */
 	private void decodeSection(int ciphertext, StringBuilder currentLongestSubstringInDictionary,
-			HashMap<String, Integer> encodingDictionary, HashMap<Integer, String> decodingDictionary) {
+			HashMap<String, Integer> encodingDictionary,
+			HashMap<Integer, String> decodingDictionary) {
 		// plaintextChunk will contain the plaintext that ciphertext corresponds to.
 		String plaintextChunk = new String();
 		plaintextChunk = decodingDictionary.get(ciphertext);
 		if (plaintextChunk == null) {
-			HandleCiphertextNotInDictionaryError(currentLongestSubstringInDictionary, encodingDictionary,
-					decodingDictionary);
+			HandleCiphertextNotInDictionaryError(currentLongestSubstringInDictionary,
+					encodingDictionary, decodingDictionary);
 			plaintextChunk = decodingDictionary.get(ciphertext);
 		}
 		// We will now iterate through the LZW encoding-esque algorithm for each
@@ -158,8 +159,9 @@ public class Decode extends LZWHelper {
 		for (int i = 0; i < plaintextChunk.length(); i++) {
 			currentLongestSubstringInDictionary.append(plaintextChunk.charAt(i) + "");
 			if (encodingDictionary.get(currentLongestSubstringInDictionary.toString()) == null) {
-				HandleSubstringNotInDictionary(plaintextChunk.charAt(i), currentLongestSubstringInDictionary,
-						encodingDictionary, decodingDictionary);
+				HandleSubstringNotInDictionary(plaintextChunk.charAt(i),
+						currentLongestSubstringInDictionary, encodingDictionary,
+						decodingDictionary);
 			}
 		}
 	}
@@ -174,7 +176,8 @@ public class Decode extends LZWHelper {
 	 * @param decodingDictionary                  the decoding dictionary
 	 */
 	public void addNewSymbolToDictionary(StringBuilder currentLongestSubstringInDictionary,
-			HashMap<String, Integer> encodingDictionary, HashMap<Integer, String> decodingDictionary) {
+			HashMap<String, Integer> encodingDictionary,
+			HashMap<Integer, String> decodingDictionary) {
 		if (encodingDictionary.size() < MAX_DICTIONARY_SIZE) {
 			String symbol = currentLongestSubstringInDictionary.toString();
 			encodingDictionary.put(symbol, encodingDictionary.size());
@@ -196,7 +199,8 @@ public class Decode extends LZWHelper {
 			HashMap<Integer, String> decodingDictionary, int CHARSET_SIZE) {
 		for (int i = 0; i < CHARSET_SIZE; i++) {
 			String asciiChar = (char) (i) + "";
-			addNewSymbolToDictionary(new StringBuilder(asciiChar), encodingDictionary, decodingDictionary);
+			addNewSymbolToDictionary(new StringBuilder(asciiChar), encodingDictionary,
+					decodingDictionary);
 		}
 	}
 
@@ -225,8 +229,10 @@ public class Decode extends LZWHelper {
 	 * @param encodingDictionary                  the encoding dictionary
 	 * @param decodingDictionary                  the decoding dictionary
 	 */
-	private void HandleCiphertextNotInDictionaryError(StringBuilder currentLongestSubstringInDictionary,
-			HashMap<String, Integer> encodingDictionary, HashMap<Integer, String> decodingDictionary) {
+	private void HandleCiphertextNotInDictionaryError(
+			StringBuilder currentLongestSubstringInDictionary,
+			HashMap<String, Integer> encodingDictionary,
+			HashMap<Integer, String> decodingDictionary) {
 		addNewSymbolToDictionary(
 				new StringBuilder(currentLongestSubstringInDictionary.toString()
 						+ currentLongestSubstringInDictionary.toString().charAt(0)),

@@ -28,7 +28,8 @@ public class Encode extends LZWHelper {
 		BufferedReader inputFileReader = new BufferedReader(new FileReader(inputFilename));
 		// encodeWriter writes to (and creates, if it does not already exist) the file that will
 		// contain
-		BufferedWriter encodeWriter = new BufferedWriter(new FileWriter(GetEncodedFilename(inputFilename)));
+		BufferedWriter encodeWriter = new BufferedWriter(
+				new FileWriter(GetEncodedFilename(inputFilename)));
 		// we will initialize our dictionary with all the characters in our charset.
 		InitializeEncodingDictionary(encodingDictionary, CHARSET_SIZE);
 		// currentCharacter is the character we are currently running the LZW algorithm on. It is
@@ -52,13 +53,15 @@ public class Encode extends LZWHelper {
 	 * encodingDictionary or not. If it is, continue iterating this function. If not, write the code
 	 * word corresponding to the previous currentLongestSubstringInDictionary to the
 	 * 
-	 * @param inputFileReader
-	 * @param encodeWriter
-	 * @param encodingDictionary
-	 * @param currentLongestSubstringInDictionary
+	 * @param currentCharacter                      Character currently being read
+	 * @param inputFileReader                       BufferedReader reading characters in the file
+	 * @param encodeWriter                          BufferedWriter that writes output
+	 * @param encodingDictionary                    Dictionary containing symbols
+	 * @param currentLongestSubstringInDictionary   Symbol added at the end of dictionaries
 	 */
-	private void LZWStep(char currentCharacter, BufferedReader inputFileReader, BufferedWriter encodeWriter,
-			HashMap<String, Integer> encodingDictionary, StringBuilder currentLongestSubstringInDictionary) {
+	private void LZWStep(char currentCharacter, BufferedReader inputFileReader,
+			BufferedWriter encodeWriter, HashMap<String, Integer> encodingDictionary,
+			StringBuilder currentLongestSubstringInDictionary) {
 		try {
 			currentCharacter = (char) (inputFileReader.read());
 		} catch (Exception e) {
@@ -66,8 +69,8 @@ public class Encode extends LZWHelper {
 		}
 		currentLongestSubstringInDictionary.append(currentCharacter);
 		if (encodingDictionary.get(currentLongestSubstringInDictionary.toString()) == null) {
-			HandleSubstringNotInDictionary(currentCharacter, currentLongestSubstringInDictionary, encodingDictionary,
-					decodingDictionary, encodeWriter);
+			HandleSubstringNotInDictionary(currentCharacter, currentLongestSubstringInDictionary,
+					encodingDictionary, decodingDictionary, encodeWriter);
 		}
 		try {
 			if (!inputFileReader.ready()) {
@@ -96,7 +99,8 @@ public class Encode extends LZWHelper {
 	 * @param encodingDictionary the dictionary to be initialized
 	 * @param CHARSET_SIZE       the size of the charset
 	 */
-	public void InitializeEncodingDictionary(HashMap<String, Integer> encodingDictionary, int CHARSET_SIZE) {
+	public void InitializeEncodingDictionary(HashMap<String, Integer> encodingDictionary,
+			int CHARSET_SIZE) {
 		for (int i = 0; i < CHARSET_SIZE; i++) {
 			encodingDictionary.put((char) (i) + "", i);
 		}
@@ -111,7 +115,8 @@ public class Encode extends LZWHelper {
 	 * @param decodingDictionary                  the decoding dictionary
 	 */
 	public void AddNewSymbolToDictionary(StringBuilder currentLongestSubstringInDictionary,
-			HashMap<String, Integer> encodingDictionary, HashMap<Integer, String> decodingDictionary) {
+			HashMap<String, Integer> encodingDictionary,
+			HashMap<Integer, String> decodingDictionary) {
 		if (encodingDictionary.size() < MAX_DICTIONARY_SIZE) {
 			String symbol = currentLongestSubstringInDictionary.toString();
 			encodingDictionary.put(symbol, encodingDictionary.size());
@@ -143,15 +148,15 @@ public class Encode extends LZWHelper {
 	 * @param currentLongestSubstringInDictionary Substring to be output
 	 * @param encodeWriter                        the BufferedWriter that writes to the output file
 	 */
-	public void HandleEndCase(Character finalCharacter, StringBuilder currentLongestSubstringInDictionary,
-			BufferedWriter encodeWriter) {
+	public void HandleEndCase(Character finalCharacter,
+			StringBuilder currentLongestSubstringInDictionary, BufferedWriter encodeWriter) {
 		OutputToCodestream(currentLongestSubstringInDictionary.toString().substring(0,
 				currentLongestSubstringInDictionary.length()), encodeWriter);
 	}
 	/*
-	 *  ||  ||  
-     *  \\()// 
-     * //(__)\\
-     * ||    ||
+ ||  ||  
+ \\()// 
+//(__)\\
+||    ||
 	 */
 }
