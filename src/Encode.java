@@ -140,7 +140,7 @@ public class Encode extends LZWHelper {
 	 * been added to the codestream yet, as well as the last character to be read.
 	 * 
 	 * @param finalCharacter                      the last character to be read
-	 * @param currentLongestSubstringInDictionary
+	 * @param currentLongestSubstringInDictionary Substring to be output
 	 * @param encodeWriter                        the BufferedWriter that writes to the output file
 	 */
 	public void handleEndCase(Character finalCharacter, StringBuilder currentLongestSubstringInDictionary,
